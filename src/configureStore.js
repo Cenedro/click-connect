@@ -6,6 +6,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import createReducer from './reducers';
+import homeContainerReducer from './containers/HomeContainer/reducer';
+
 
 export default function configureStore(initialState = {}, history) {
   const reduxSagaMonitorOptions = {};
@@ -26,7 +28,7 @@ export default function configureStore(initialState = {}, history) {
       : compose;
   /* eslint-enable */
   const store = createStore(
-    createReducer(),
+    createReducer([homeContainerReducer]),
     initialState,
     composeEnhancers(...enhancers),
     // eslint-disable-next-line no-underscore-dangle
